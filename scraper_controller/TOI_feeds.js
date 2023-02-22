@@ -43,7 +43,7 @@ module.exports = async function getfeeds(rss_link) {
         // console.log(Title);
         // console.log(Content);
 
-        Title.forEach((el, i) => {
+        Title.map((el, i) => {
             if(url.length >0){
             data.push({
                 title: el,
@@ -60,8 +60,9 @@ module.exports = async function getfeeds(rss_link) {
                 });
             }
         });
-        // console.log(url)
-        console.log(data);
+
+        // console.log(data);
+        return data;
     }
     catch (err) {
         console.log(err);

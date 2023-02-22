@@ -79,7 +79,8 @@ module.exports = async function getfeeds(rss_link) {
             }
         });
         // console.log(url)
-        console.log(data);
+        // console.log(data);
+        return data;
 
 
     }
