@@ -7,12 +7,9 @@ const PORT = 8383;
 
 const app = express();
 
-// app.get("/",(req,res)=>{
-//     res.send("<h1>Hello</h1>")
-// })
 app.get("/search/:query", (req, res) => {
     const query = `${process.env.search}${req.params.query}`;
-    search_feeds(`${query}`)
+    search_feeds(query)
         .then(result => res.json(result));
 });
 
