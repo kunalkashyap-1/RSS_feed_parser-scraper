@@ -21,5 +21,5 @@ module.exports = async function (rss_link) {
     }));
 
     // console.log(data);
-    return data;
+    return { data };
 }

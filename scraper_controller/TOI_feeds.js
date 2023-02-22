@@ -33,7 +33,7 @@ module.exports = async function getfeeds(rss_link) {
             const content = el.children[0].data.replace("[CDATA[", "").replace("]]", "");
             Content.push(content);
         });
-        
+
 
         $("item").find("pubDate").each((i, el) => {
             PublishedAt.push($(el).text());
@@ -44,14 +44,15 @@ module.exports = async function getfeeds(rss_link) {
         // console.log(Content);
 
         Title.map((el, i) => {
-            if(url.length >0){
-            data.push({
-                title: el,
-                imageUrl: url[i],
-                content: Content[i],
-                link: Link[i],
-                publishedAt: PublishedAt[i]
-            });}else{
+            if (url.length > 0) {
+                data.push({
+                    title: el,
+                    imageUrl: url[i],
+                    content: Content[i],
+                    link: Link[i],
+                    publishedAt: PublishedAt[i]
+                });
+            } else {
                 data.push({
                     title: el,
                     content: Content[i],
@@ -62,7 +63,7 @@ module.exports = async function getfeeds(rss_link) {
         });
 
         // console.log(data);
-        return data;
+        return { data };
     }
     catch (err) {
         console.log(err);

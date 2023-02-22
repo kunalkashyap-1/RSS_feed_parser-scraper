@@ -32,22 +32,23 @@ module.exports = async function getfeeds(rss_link) {
         $("item").find("description").each((i, el) => {
             const cond = $(el.children[0]).text();
             // console.log(cond);
-            if(cond.includes("</a>")){
-            const test = $(el.children[0]).text().split("</a>");
-            const i1 = test[0].indexOf('src=') + 5;
-            const i2 = test[0].length - 3;
-            const src = test[0].substring(i1, i2).replace(/\"/g, '');
-            url.push(src);
-            const content = test[1]
-            Content.push(content);
-            }else if(cond.includes("img")){
+            if (cond.includes("</a>")) {
+                const test = $(el.children[0]).text().split("</a>");
+                const i1 = test[0].indexOf('src=') + 5;
+                const i2 = test[0].length - 3;
+                const src = test[0].substring(i1, i2).replace(/\"/g, '');
+                url.push(src);
+                const content = test[1]
+                Content.push(content);
+            }
+            else if (cond.includes("img")) {
                 const test = $(el.children[0]).text().split("/>");
-            const i1 = test[0].indexOf('src=') + 5;
-            const i2 = test[0].length - 2;
-            const src = test[0].substring(i1, i2).replace(/\"/g, '');
-            url.push(src);
-            const content = test[1]
-            Content.push(content);
+                const i1 = test[0].indexOf('src=') + 5;
+                const i2 = test[0].length - 2;
+                const src = test[0].substring(i1, i2).replace(/\"/g, '');
+                url.push(src);
+                const content = test[1]
+                Content.push(content);
             }
         });
 
@@ -80,7 +81,7 @@ module.exports = async function getfeeds(rss_link) {
         });
         // console.log(url)
         // console.log(data);
-        return data;
+        return { data };
 
 
     }

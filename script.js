@@ -14,24 +14,21 @@ const app = express();
 app.get("/search/:query", (req, res) => {
     const query = req.params.query;
     search_feeds(RSS_links.search + query)
-        .then(result => res.send(result));
+        .then(result => res.json(result));
 });
 
-app.get("/feeds/:query",(req,res)=>{
+app.get("/feeds/:query", (req, res) => {
     const query = req.params.query;
     TOI_feeds(RSS_links[query])
-        .then(result => res.send(result));
+        .then(result => res.json(result));
 });
 
-app.get("/c1/:query",(req,res)=>{
+app.get("/c1/:query", (req, res) => {
     const query = req.params.query;
     category_feeds(RSS_links[query])
-        .then(result => res.send(result));
+        .then(result => res.json(result));
 })
 
-// TOI_feeds(RSS_links.top_stories);
-// TOI_feeds(RSS_links.latest_feeds);
-// category_feeds(RSS_links.delhi);
 
 app.listen(PORT, () => {
     console.log("server started of port " + PORT)
