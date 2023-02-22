@@ -10,7 +10,7 @@ module.exports = async function getfeeds(rss_link) {
     const Content = [];
     const Link = [];
     const PublishedAt = [];
-    const data = [];
+    const Data = [];
 
     try {
         const response = await axios.get(rss_link);
@@ -45,7 +45,7 @@ module.exports = async function getfeeds(rss_link) {
 
         Title.map((el, i) => {
             if (url.length > 0) {
-                data.push({
+                Data.push({
                     title: el,
                     imageUrl: url[i],
                     content: Content[i],
@@ -53,7 +53,7 @@ module.exports = async function getfeeds(rss_link) {
                     publishedAt: PublishedAt[i]
                 });
             } else {
-                data.push({
+                Data.push({
                     title: el,
                     content: Content[i],
                     link: Link[i],
@@ -63,7 +63,7 @@ module.exports = async function getfeeds(rss_link) {
         });
 
         // console.log(data);
-        return { data };
+        return { Data };
     }
     catch (err) {
         console.log(err);
