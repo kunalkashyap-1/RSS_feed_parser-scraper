@@ -2,7 +2,7 @@ const _date = new Date();
 
 function Footer(){
     return <footer >
-        <p>© Copyright {_date.getFullYear()}</p>
+        <p>Made with ❤️ © Copyright {_date.getFullYear()}</p>
     </footer>
 }
 
