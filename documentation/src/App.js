@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+import Header from "./components/navbar";
+import Footer from "./components/footer";
+import Content from "./components/content"
 import './App.css';
 
 function App() {
-  const [api_data,set_api_data] = useState([{}]);
+  // const [api_data,setData] = useState();
 
-  useEffect(()=>{
-    fetch("http://127.0.0.1:8383/feeds/top_stories")
-      .then(data => {
-        console.log(data)
-        set_api_data(data)
-      });
-  },[]);
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:8383/feeds/top_stories")
+  //     .then((response) => response.json())
+  //     .then((res) => setData(res))
+  //     .catch((error) => console.error(error));
+  // }, []);
 
   return (
-    <div className="App">
-      {typeof api_data.Data === "undefined"?<p>Loading...</p>:<p>{api_data}{console.log(api_data)}</p>}
+    <div>
+      <Header />
+      <Content/>
+      <Footer/>
     </div>
   );
 }
