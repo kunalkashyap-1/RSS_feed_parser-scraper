@@ -1,14 +1,17 @@
-body{
+body {
+  margin:0px;
   /* background-color: #282c34; */
 }
 
 nav {
   position:sticky;
-  z-index:999;
+  top:0px;
+  /* z-index:999; */
   display:flex;
   align-items:center;
   justify-content:space-between;
   height:2.8rem;
+  background-color:#fff;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -38,4 +41,12 @@ nav a{
   /* font-weight: 600; */
   font-size:1.2rem;
   text-decoration:none;
+}
+
+.anchor:hover{
+  text-decoration:underline;
+}
+
+.content{
+  margin:1rem;
 }

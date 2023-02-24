@@ -1,5 +1,5 @@
 {
-  "name": "web_scraper",
+  "name": "rss_feed_parser-scraper",
   "version": "1.0.0",
   "description": "",
   "main": "script.js",

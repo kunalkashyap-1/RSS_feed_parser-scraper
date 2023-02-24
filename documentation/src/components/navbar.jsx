@@ -2,14 +2,14 @@
 function Header() {
     return (<nav>
         <h1>
-        <a href="/">News API</a>
+        <a href="/">RSS feed parser</a>
         </h1>
-        <div className="anchors">
-            <a href="#intro">Quick guide</a>
-            <a href="#endpoint">Endpoints</a>
-            <a href="#">Console</a>
-            <a href="#">Examples</a>
-            <a href="https://github.com/kunalkashyap-1/news-api_scraper">Git hub</a>
+        <div >
+            <a className="anchor" href="#intro">Quick guide</a>
+            <a className="anchor" href="#endpoint">Endpoints</a>
+            <a className="anchor" href="#">Console</a>
+            <a className="anchor" href="#">Examples</a>
+            <a className="anchor" href="https://github.com/kunalkashyap-1/news-api_scraper">Git hub</a>
         </div>
     </nav>);
 }
