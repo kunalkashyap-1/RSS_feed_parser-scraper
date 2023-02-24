@@ -1,8 +1,12 @@
 import Data from "./doc_data";
+import Examples from "./Examples"
 
 function Content(){
     return (
         <div className="content">
+            {Data.RSS.map((el,i)=> {
+                return i !== Data.intro.length-1?<p>{el} <br/></p>:<p>{el}</p> 
+                })}
             <h1 id="intro">Introduction</h1>
             {Data.intro.map((el,i)=> {
                 return i !== Data.intro.length-1?<p>{el} <br/></p>:<p>{el}</p> 
@@ -23,6 +27,9 @@ function Content(){
                 })}</p>
                 </div>)
             })}
+            <h1 id="example" >Examples</h1>
+            These are some examples in some commonly used languages to show you how you could implement RSS Paarse:
+            <Examples/>
         </div>
     )
 }
