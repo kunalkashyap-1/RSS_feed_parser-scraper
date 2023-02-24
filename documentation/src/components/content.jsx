@@ -10,10 +10,12 @@ function Content() {
             {Data.RSS.map((el, i) => {
                 return i !== Data.intro.length - 1 ? <p>{el} <br /></p> : <p>{el}</p>
             })}
+            <div id="into">
             <h1 id="intro">Introduction</h1>
             {Data.intro.map((el, i) => {
                 return i !== Data.intro.length - 1 ? <p>{el} <br /></p> : <p>{el}</p>
             })}
+            </div>
             <h1 id="get_start">Getting Started</h1>
             {Data.get_start.map((el, i) => {
                 return i !== Data.get_start.length - 1 ? <p>{el} <br /></p> : <p>{el}</p>
@@ -22,8 +24,7 @@ function Content() {
             {Data.endpoints[0].ep_title}
             {Data.endpoints.map((el, i) => {
                 return (<div>
-                    <strong>{i !== 0 ? el.ep_title : null}</strong>
-                    <br />
+                    <h2><strong>{i !== 0 ? el.ep_title : null}</strong></h2>
                     <br/>
                     {i !== 0 ?
                             <SyntaxHighlighter language="markdown" style={ okaidia } >
