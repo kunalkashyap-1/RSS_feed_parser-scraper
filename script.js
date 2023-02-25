@@ -10,23 +10,39 @@ app.use(cors({
     origin:"http://localhost:3000"
 }));
 
-app.get("/search/:query", (req, res) => {
-    const query = `${process.env.search}${req.params.query}`;
-    search_feeds(query)
-        .then(result => res.json(result));
+function reqHandler(result,amt){
+    const Data=result.data.slice(0,(amt !== undefined?amt:result.length));
+    return {Data};
+}
+
+app.get("/",(req,res)=>{
+    res.send(`<div>
+    <h3>Invalid endpoint please enter endpoint with valid path</h3>
+    <p>Add Valid Path /search, /feeds, /c1
+     </div>`)
+})
+
+app.get("/search/:path", (req, res) => {
+    const path = `${process.env.search}${req.params.path}`;
+    const amt = req.query.amt;
+    search_feeds(path)
+        .then(result => res.json(reqHandler(result,amt)));
 });
 
-app.get("/feeds/:query", (req, res) => {
-    const query = req.params.query;
+app.get("/feeds/:path", (req, res) => {
+    const path = req.params.path;
     // console.log(process.env[query]);
-    TOI_feeds(process.env[query])
-        .then(result => res.json(result));
+    const amt = req.query.amt;
+
+    TOI_feeds(process.env[path])
+        .then(result => res.json(reqHandler(result,amt)));
 });
 
-app.get("/c1/:query", (req, res) => {
-    const query = req.params.query;
-    category_feeds(process.env[query])
-        .then(result => res.json(result));
+app.get("/c1/:path", (req, res) => {
+    const path = req.params.path;
+    const amt = req.query.amt;
+    category_feeds(process.env[path])
+        .then(result => res.json(reqHandler(result,amt)));
 })
 
 
