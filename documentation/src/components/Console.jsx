@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import { Prism } from 'react-syntax-highlighter';
 import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Button, NativeSelect, Autocomplete, TextField } from '@mui/material';
+import { search_Options, feed_Options, c1_Options } from "./AutocompleteOption";
 
 
 function Console() {
-    const urls={initial:"http://example.domain:Port/path/",
-    search:"http://localhost:8383/search/",
-    stat:"http://localhost:8383/feeds/",
-    category:"http://localhost:8383/c1/"
+    const urls = {
+        Parameter: "http://example.domain:Port/path/",
+        Search: "http://localhost:8383/search/",
+        Stat: "http://localhost:8383/feeds/",
+        Location: "http://localhost:8383/c1/"
     }
-    
-    const [param, setParam] = useState(``);
-    const [endpoint, setEndpoint] = useState(`${urls.initial}{parameter}`);
+
+    const [endpoint, setEndpoint] = useState(`${urls.Parameter}{parameter}`);
     const [submit, setSubmit] = useState(0);
-    const [option, setOption] = useState("Select an option");
+    const [option, setOption] = useState("Parameter");
     const [api_data, setData] = useState({
         "title": "Example news title of Article",
         "imageUrl": "https://psuedoPhoto.com/photo",
@@ -22,7 +24,7 @@ function Console() {
         "publishedAt": "Day, Date Month Year Time"
     });
 
-    const selectHandler = (event)=>{
+    const selectHandler = (event) => {
         setEndpoint(`${urls[event.target.value]}{parameter}`);
         setOption(event.target.value);
     };
@@ -55,12 +57,16 @@ function Console() {
                         <td>Endpoints</td>
                         {/* <td>{endpoint}</td> */}
                         <td>
-                        <select value={option} onChange={selectHandler}>
-                            <option value="initial">Select an option</option>
-                            <option value="search">Search for Article</option>
-                            <option value="stat">Article Type</option>
-                            <option value="category">Article by Location</option>
-                        </select>
+                            <NativeSelect
+                                // defaultValue={option}
+                                value={option}
+                                onChange={selectHandler}
+                            >
+                                <option value="Parameter">Select an option</option>
+                                <option value="Search">Search for Article</option>
+                                <option value="Stat">Article Type</option>
+                                <option value="Location">Article by Location</option>
+                            </NativeSelect>
                         </td>
                     </tr>
                     <tr>
@@ -69,16 +75,35 @@ function Console() {
                     </tr>
                     <tr>
                         <td>Parameter</td>
-                        <td><input
-                            type="text"
-                            placeholder="Enter parameters"
-                            value={param}
-                            onChange={(event) => {
-                                const val = event.target.value;
-                                setParam(event.target.value);
-                                setEndpoint(`${urls[option]}${val.length !== 0 ? val : `{parameter}`}`);
-                                // console.log(event.target.value);
-                            }} /></td>
+                        <td>
+                            {option === "Search" ?
+                                <TextField
+                                    id="outlined-basic"
+                                    size="small"
+                                    sx={{ width: 300 }}
+                                    label={option}
+                                    variant="outlined"
+                                    onChange={(event) => {
+                                        const val = event.target.value;
+                                        setEndpoint(`${urls[option]}${val.length !== 0 ? val : `{parameter}`}`);
+                                    }} />
+                                :
+                                <Autocomplete
+                                    disablePortal
+                                    forcePopupIcon={false}
+                                    id="combo-box-demo"
+                                    options={search_Options}
+                                    size="small"
+                                    sx={{ width: 300 }}
+                                    renderInput={(params) =>
+                                        <TextField {...params} label={option}
+                                        />}
+                                    onInputChange={(event) => {
+                                        const val = event.target.value;
+                                        setEndpoint(`${urls[option]}${val.length !== 0 ? val : `{parameter}`}`);
+                                    }}
+                                />}
+                        </td>
                     </tr>
                     <tr>
                         <td>HTTP Method</td>
@@ -89,7 +114,11 @@ function Console() {
                         <td>this will be the amount once backend is ready for it </td>
                     </tr>
                     <tr>
-                        <td><input type="submit" onClick={OnSubmit} value="Try it" /></td>
+                        {/* <input type="submit" onClick={OnSubmit} value="Try it" /> */}
+                        <td><Button variant="contained" color="success" onClick={OnSubmit}>
+                            Try it
+                        </Button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

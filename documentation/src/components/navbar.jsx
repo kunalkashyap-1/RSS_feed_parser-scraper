@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 function Header() {
     return (<nav>
         <h1>
+        <img alt="logo" src="./logo192.png" />
         <Link to="/">RSS Parser</Link>
         </h1>
         <div >

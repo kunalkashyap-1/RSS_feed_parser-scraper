@@ -19,6 +19,16 @@ body {
   margin:0px;
   /* background-color: #282c34; */
 }
+img{
+  margin-left:10px;
+  vertical-align:top;
+  width:32px;
+  height:32px;
+}
+
+nav h1{
+  text-align:center;
+}
 
 nav {
   position:sticky;
@@ -27,7 +37,7 @@ nav {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  height:2.8rem;
+  height:3rem;
   background-color:#fff;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
@@ -61,8 +71,8 @@ nav a{
   text-decoration:none;
 }
 
-table{
-  border-spacing:1rem;
+td{
+  padding:0.6rem 1rem;
 }
 
 .anchor:hover{
@@ -89,5 +99,6 @@ table{
 }
 
 #response pre{
-  height:40rem;
+  height:auto;
+  max-height:27rem;
 }
