@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { NativeSelect} from '@mui/material';
 import Code from "./codes"
 
 function MyComponent() {
@@ -33,12 +34,15 @@ function MyComponent() {
   return (
     <div>
       <p>These are some examples in some commonly used languages to show you how you could implement RSS Paarse:</p>
-      <select value={curr_option} onChange={handleEvent}>
+      <NativeSelect 
+      sx={{width:300}}
+      value={curr_option} 
+      onChange={handleEvent}>
         <option value="initial">Select an Option</option>
         <option value="js_fetch">js_fetch</option>
         <option value="js_axios">js_axios</option>
         <option value="py_request">py_request</option>
-      </select>
+      </NativeSelect>
       <SyntaxHighlighter language={code.type} style={okaidia}>
         {code.code}
       </SyntaxHighlighter>

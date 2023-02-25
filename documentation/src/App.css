@@ -17,7 +17,9 @@
 
 body {
   margin:0px;
-  /* background-color: #282c34; */
+  /* background-color: #282c34;
+  color:#fff; */
+  /* background-color:#2e323b; */
 }
 img{
   margin-left:10px;
@@ -80,7 +82,7 @@ td{
 }
 
 .content{
-  margin:4rem;
+  margin:4rem 5rem;
 }
 
 .console_local{
@@ -93,7 +95,7 @@ td{
 }
 
 #response{
-  flex:1;
+  flex:0.9;
   min-width:0;
   min-height:0;
 }

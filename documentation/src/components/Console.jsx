@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Prism } from 'react-syntax-highlighter';
 import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Button, NativeSelect, Autocomplete, TextField } from '@mui/material';
-import { search_Options, feed_Options, c1_Options } from "./AutocompleteOption";
+import { Button, NativeSelect, TextField } from '@mui/material';
 
 
 function Console() {
@@ -50,7 +49,7 @@ function Console() {
 
     return (<div className="console_local">
         <form>
-            <h1>Test Parse Live</h1>
+            <h1>Test Parser Live</h1>
             <table>
                 <tbody>
                     <tr>
@@ -60,6 +59,7 @@ function Console() {
                             <NativeSelect
                                 // defaultValue={option}
                                 value={option}
+                                sx={{ width: 300 }}
                                 onChange={selectHandler}
                             >
                                 <option value="Parameter">Select an option</option>
@@ -76,33 +76,16 @@ function Console() {
                     <tr>
                         <td>Parameter</td>
                         <td>
-                            {option === "Search" ?
-                                <TextField
-                                    id="outlined-basic"
-                                    size="small"
-                                    sx={{ width: 300 }}
-                                    label={option}
-                                    variant="outlined"
-                                    onChange={(event) => {
-                                        const val = event.target.value;
-                                        setEndpoint(`${urls[option]}${val.length !== 0 ? val : `{parameter}`}`);
-                                    }} />
-                                :
-                                <Autocomplete
-                                    disablePortal
-                                    forcePopupIcon={false}
-                                    id="combo-box-demo"
-                                    options={search_Options}
-                                    size="small"
-                                    sx={{ width: 300 }}
-                                    renderInput={(params) =>
-                                        <TextField {...params} label={option}
-                                        />}
-                                    onInputChange={(event) => {
-                                        const val = event.target.value;
-                                        setEndpoint(`${urls[option]}${val.length !== 0 ? val : `{parameter}`}`);
-                                    }}
-                                />}
+                            <TextField
+                                id="outlined-basic"
+                                size="small"
+                                sx={{ width: 300 }}
+                                label={option}
+                                variant="outlined"
+                                onChange={(event) => {
+                                    const val = event.target.value;
+                                    setEndpoint(`${urls[option]}${val.length !== 0 ? val : `{parameter}`}`);
+                                }} />
                         </td>
                     </tr>
                     <tr>
