@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import { Prism } from 'react-syntax-highlighter';
 import { okaidia } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { Button, NativeSelect, TextField } from '@mui/material';
+import { Button, NativeSelect, TextField, Input } from '@mui/material';
 
 
 function Console() {
     const urls = {
-        Parameter: "http://example.domain:Port/path/",
+        Parameter: "http://example.com/path/",
         Search: "http://localhost:8383/search/",
         Stat: "http://localhost:8383/feeds/",
         Location: "http://localhost:8383/c1/"
     }
 
-    const [endpoint, setEndpoint] = useState(`${urls.Parameter}{parameter}`);
+    const [endpoint, setEndpoint] = useState(`${urls.Parameter}`);
     const [submit, setSubmit] = useState(0);
+    const [limit, setLimit] = useState(0);
+    const [param, setParam] = useState(`{parameter}`);
     const [option, setOption] = useState("Parameter");
     const [api_data, setData] = useState({
         "title": "Example news title of Article",
@@ -24,13 +26,13 @@ function Console() {
     });
 
     const selectHandler = (event) => {
-        setEndpoint(`${urls[event.target.value]}{parameter}`);
+        setEndpoint(`${urls[event.target.value]}`);
         setOption(event.target.value);
     };
 
     useEffect(() => {
         // console.log(endpoint);
-        submit === 1 ? fetch(endpoint)
+        submit === 1 ? fetch(`${endpoint}${param}${limit>0?`?limit=${limit}`:""}`)
             .then((response) => response.json())
             .then((res) => {
                 // console.log(res);
@@ -39,7 +41,9 @@ function Console() {
             })
             .catch((error) => console.error(error)) : <></>;
 
-    }, [submit]);
+    }, 
+    // eslint-disable-next-line
+    [submit]);
 
     function OnSubmit(event) {
         event.preventDefault();
@@ -71,7 +75,7 @@ function Console() {
                     </tr>
                     <tr>
                         <td>URL</td>
-                        <td>{endpoint}</td>
+                        <td>{`${endpoint}${param}${limit>0?`?limit=${limit}`:""}`}</td>
                     </tr>
                     <tr>
                         <td>Parameter</td>
@@ -84,7 +88,7 @@ function Console() {
                                 variant="outlined"
                                 onChange={(event) => {
                                     const val = event.target.value;
-                                    setEndpoint(`${urls[option]}${val.length !== 0 ? val : `{parameter}`}`);
+                                    setParam(`${val.length !== 0 ? val : `{parameter}`}`);
                                 }} />
                         </td>
                     </tr>
@@ -93,8 +97,18 @@ function Console() {
                         <td>GET</td>
                     </tr>
                     <tr>
-                        <td>Amount</td>
-                        <td>this will be the amount once backend is ready for it </td>
+                        <td>Limit</td>
+                        <td>
+                            <Input 
+                            type="number"
+                            value={limit}
+                            sx={{width:300}}
+                            onChange={(event)=>{
+                                const amt = event.target.value;
+                                setLimit( amt >-1?amt:0);
+                            }}
+                            />
+                                </td>
                     </tr>
                     <tr>
                         {/* <input type="submit" onClick={OnSubmit} value="Try it" /> */}
