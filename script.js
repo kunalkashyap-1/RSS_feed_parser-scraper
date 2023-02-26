@@ -11,7 +11,7 @@ app.use(cors({
 }));
 
 function reqHandler(result,amt){
-    const Data=result.data.slice(0,(amt !== undefined?amt:result.length));
+    const Data=result.data.slice(0,(amt >0?amt:result.length));
     return {Data};
 }
 
@@ -24,7 +24,9 @@ app.get("/",(req,res)=>{
 
 app.get("/search/:path", (req, res) => {
     const path = `${process.env.search}${req.params.path}`;
-    const amt = req.query.amt;
+    const amt = req.query.limit;
+    // console.log(path);
+    // console.log(amt);
     search_feeds(path)
         .then(result => res.json(reqHandler(result,amt)));
 });
@@ -32,7 +34,7 @@ app.get("/search/:path", (req, res) => {
 app.get("/feeds/:path", (req, res) => {
     const path = req.params.path;
     // console.log(process.env[query]);
-    const amt = req.query.amt;
+    const amt = req.query.limit;
 
     TOI_feeds(process.env[path])
         .then(result => res.json(reqHandler(result,amt)));
@@ -40,7 +42,7 @@ app.get("/feeds/:path", (req, res) => {
 
 app.get("/c1/:path", (req, res) => {
     const path = req.params.path;
-    const amt = req.query.amt;
+    const amt = req.query.limit;
     category_feeds(process.env[path])
         .then(result => res.json(reqHandler(result,amt)));
 })

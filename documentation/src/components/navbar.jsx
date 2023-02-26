@@ -4,7 +4,7 @@ function Header() {
     return (<nav>
         <h1>
         <img alt="logo" src="./logo192.png" />
-        <Link to="/">RSS Parser</Link>
+        <Link to="/">RSS Feed Parser</Link>
         </h1>
         <div >
             <a className="anchor" href="/#into">Quick guide</a>

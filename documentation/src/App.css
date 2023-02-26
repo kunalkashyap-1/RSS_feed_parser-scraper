@@ -77,6 +77,12 @@ td{
   padding:0.6rem 1rem;
 }
 
+/* td input{
+  border:1px solid grey;
+  height:30px;
+  width:300px;
+} */
+
 .anchor:hover{
   text-decoration:underline;
 }
