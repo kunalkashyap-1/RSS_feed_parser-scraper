@@ -110,3 +110,7 @@ td{
   height:auto;
   max-height:27rem;
 }
+
+tr td:first-child{
+  text-align:right;
+}

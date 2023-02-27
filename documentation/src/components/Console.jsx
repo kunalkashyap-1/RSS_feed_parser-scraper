@@ -32,7 +32,7 @@ function Console() {
 
     useEffect(() => {
         // console.log(endpoint);
-        submit === 1 ? fetch(`${endpoint}${param}${limit>0?`?limit=${limit}`:""}`)
+        submit === 1 ? fetch(`${endpoint}${param}${limit > 0 ? `?limit=${limit}` : ""}`)
             .then((response) => response.json())
             .then((res) => {
                 // console.log(res);
@@ -41,9 +41,9 @@ function Console() {
             })
             .catch((error) => console.error(error)) : <></>;
 
-    }, 
-    // eslint-disable-next-line
-    [submit]);
+    },
+        // eslint-disable-next-line
+        [submit]);
 
     function OnSubmit(event) {
         event.preventDefault();
@@ -57,8 +57,7 @@ function Console() {
             <table>
                 <tbody>
                     <tr>
-                        <td>Endpoints</td>
-                        {/* <td>{endpoint}</td> */}
+                        <td>API Reference</td>
                         <td>
                             <NativeSelect
                                 // defaultValue={option}
@@ -74,8 +73,18 @@ function Console() {
                         </td>
                     </tr>
                     <tr>
-                        <td>URL</td>
-                        <td>{`${endpoint}${param}${limit>0?`?limit=${limit}`:""}`}</td>
+                        <td>Endpoint</td>
+                        <td>
+                            <TextField
+                                type='text'
+                                value={`${endpoint}${param}${limit>0?`?limit=${limit}`:""}`}
+                                sx={{width:300}}
+                                size="small"
+                                variant='outlined'
+                                inputProps={
+                                    { readOnly: true, }
+                                }/>
+                            </td>
                     </tr>
                     <tr>
                         <td>Parameter</td>
@@ -94,21 +103,32 @@ function Console() {
                     </tr>
                     <tr>
                         <td>HTTP Method</td>
-                        <td>GET</td>
+                        <td>
+                        <TextField
+                                type='text'
+                                value="GET"
+                                sx={{width:300}}
+                                disabled={true}
+                                size="small"
+                                variant='outlined'
+                                inputProps={
+                                    { readOnly: true, }
+                                }/>
+                        </td>
                     </tr>
                     <tr>
                         <td>Limit</td>
                         <td>
-                            <Input 
-                            type="number"
-                            value={limit}
-                            sx={{width:300}}
-                            onChange={(event)=>{
-                                const amt = event.target.value;
-                                setLimit( amt >-1?amt:0);
-                            }}
+                            <Input
+                                type="number"
+                                value={limit}
+                                sx={{ width: 300 }}
+                                onChange={(event) => {
+                                    const amt = event.target.value;
+                                    setLimit(amt > -1 ? amt : 0);
+                                }}
                             />
-                                </td>
+                        </td>
                     </tr>
                     <tr>
                         {/* <input type="submit" onClick={OnSubmit} value="Try it" /> */}
