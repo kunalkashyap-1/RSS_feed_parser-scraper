@@ -17,8 +17,8 @@
 
 body {
   margin:0px;
-  /* background-color: #282c34;
-  color:#fff; */
+  /* background-color: #282c34;*/
+  /* color:#fff; */
   /* background-color:#2e323b; */
 }
 img{
@@ -77,10 +77,10 @@ td{
   padding:0.6rem 1rem;
 }
 
-/* td input{
-  border:1px solid grey;
-  height:30px;
-  width:300px;
+/* table{
+  border-radius:5%;
+  background-color: #282c34;
+  color:#fff;
 } */
 
 .anchor:hover{
