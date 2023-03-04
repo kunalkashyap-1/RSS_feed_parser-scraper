@@ -32,8 +32,7 @@ function MyComponent() {
 
   }
   return (
-    <div>
-      <p>These are some examples in some commonly used languages to show you how you could implement RSS Paarse:</p>
+    <div className="example">
       <NativeSelect 
       sx={{width:300}}
       value={curr_option} 

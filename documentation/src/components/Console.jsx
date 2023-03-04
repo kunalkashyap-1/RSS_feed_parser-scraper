@@ -132,7 +132,11 @@ function Console() {
                     </tr>
                     <tr>
                         {/* <input type="submit" onClick={OnSubmit} value="Try it" /> */}
-                        <td><Button variant="contained" color="success" onClick={OnSubmit}>
+                        <td><Button 
+                        variant="contained" 
+                        color="success"
+                        size="large" 
+                        onClick={OnSubmit}>
                             Try it
                         </Button>
                         </td>

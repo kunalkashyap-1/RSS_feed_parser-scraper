@@ -15,6 +15,12 @@
   background:#555;
 }
 
+html{
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
 body {
   margin:0px;
   /* background-color: #282c34;*/
@@ -77,18 +83,9 @@ td{
   padding:0.6rem 1rem;
 }
 
-/* table{
-  border-radius:5%;
-  background-color: #282c34;
-  color:#fff;
-} */
-
 .anchor:hover{
+  transition: ease-in-out 250ms;
   text-decoration:underline;
-}
-
-.content{
-  margin:4rem 5rem;
 }
 
 .console_local{
@@ -113,4 +110,37 @@ td{
 
 tr td:first-child{
   text-align:right;
+}
+
+.content{
+  margin:2rem;
+}
+
+.heroSection{
+  margin:2rem;
+  display:flex;
+  align-items:center;
+}
+
+.heroSection img{
+  width:120rem;
+  height:30rem;
+}
+
+.details,h1,p{
+  margin:2rem;
+}
+
+.details h1{
+  font-size:3rem;
+}
+
+.intro h1{
+  margin:0;
+}
+.intro p{
+  margin:1rem 2rem;
+}
+.intro li{
+  margin:0.7rem;
 }
