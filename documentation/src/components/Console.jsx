@@ -33,10 +33,20 @@ function Console() {
     useEffect(() => {
         // console.log(endpoint);
         submit === 1 ? fetch(`${endpoint}${param}${limit > 0 ? `?limit=${limit}` : ""}`)
-            .then((response) => response.json())
-            .then((res) => {
-                // console.log(res);
-                setData(res);
+            .then(response => {
+                if(response.status===404){
+                    response.json()
+                    .then(res =>{
+                        console.log(res);
+                    })
+                }
+                else{
+                    response.json()
+                    .then(res => {
+                    // console.log(res);
+                    setData(res);
+                    })
+                }
                 setSubmit(0);
             })
             .catch((error) => console.error(error)) : <></>;

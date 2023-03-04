@@ -66,6 +66,6 @@ module.exports = async function getfeeds(rss_link) {
         return { data };
     }
     catch (err) {
-        console.log(err);
+        // console.log(err);
     }
 }
