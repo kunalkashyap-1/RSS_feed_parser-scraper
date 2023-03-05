@@ -8,9 +8,7 @@ const category_feeds = require("./scraper_controller/category_feeds.js");
 const express = require("express");
 
 const app = express();
-app.use(cors({
-    origin: "https://feedparsify.netlify.app"
-}));
+app.use(cors());
 
 const ascii_art = `
 ███████ ██████  ██████   ██████  ██████      ██   ██  ██████  ██   ██                                            
