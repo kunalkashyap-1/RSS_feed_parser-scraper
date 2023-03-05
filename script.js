@@ -1,3 +1,5 @@
+//Express API
+
 require("dotenv").config();
 const cors = require("cors");
 const feeds = require("./scraper_controller/feeds.js");
@@ -10,7 +12,7 @@ app.use(cors({
     origin: "http://localhost:3000"
 }));
 
-const ascii_art=`
+const ascii_art = `
 ███████ ██████  ██████   ██████  ██████      ██   ██  ██████  ██   ██                                            
 ██      ██   ██ ██   ██ ██    ██ ██   ██     ██   ██ ██  ████ ██   ██                                            
 █████   ██████  ██████  ██    ██ ██████      ███████ ██ ██ ██ ███████                                            
@@ -30,7 +32,7 @@ const ascii_art=`
 function reqHandler(result, amt, res) {
     if (result !== undefined) {
         const Data = result.data.slice(0, (amt > 0 ? amt : result.length));
-        res.json({Data});
+        res.json({ Data });
     }
     else {
         res.status(404).json(ascii_art);
@@ -39,9 +41,10 @@ function reqHandler(result, amt, res) {
 
 app.get("/", (req, res) => {
     res.send(`<div>
+    <pre>${ascii_art}</pre>
     <h3>Invalid endpoint please enter endpoint with valid path</h3>
     <p>Add Valid Path /search, /feeds, /c1
-     </div>`)
+     </div>`);
 })
 
 app.get("/search/:path", (req, res) => {
@@ -70,9 +73,9 @@ app.get("/c1/:path", (req, res) => {
 });
 
 app.all("*", (req, res) => {
-    res.status(404).send(`<pre>${ascii_art}</pre>`);
+    res.redirect("/");
 });
 
-app.listen(process.env.PORT, () => {
-    console.log("server active ")
+app.listen(process.env.PORT || 8383, () => {
+    console.log("server active ");
 })
