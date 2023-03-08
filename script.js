@@ -37,7 +37,7 @@ function reqHandler(result, amt, res) {
     }
 }
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
     res.send(`<div>
     <pre>${ascii_art}</pre>
     <h3>Invalid endpoint please enter endpoint with valid path</h3>
@@ -45,7 +45,7 @@ app.get("/", (req, res) => {
      </div>`);
 })
 
-app.get("/search/:path", (req, res) => {
+app.get("/search/:path", async (req, res) => {
     const path = `${process.env.search}${req.params.path}`;
     const amt = req.query.limit;
     // console.log(path);
@@ -54,7 +54,7 @@ app.get("/search/:path", (req, res) => {
         .then(result => reqHandler(result, amt, res));
 });
 
-app.get("/feeds/:path", (req, res) => {
+app.get("/feeds/:path", async (req, res) => {
     const path = req.params.path;
     // console.log(process.env[query]);
     const amt = req.query.limit;
@@ -63,14 +63,14 @@ app.get("/feeds/:path", (req, res) => {
         .then(result => reqHandler(result, amt, res));
 });
 
-app.get("/c1/:path", (req, res) => {
+app.get("/c1/:path", async (req, res) => {
     const path = req.params.path;
     const amt = req.query.limit;
     category_feeds(process.env[path])
         .then(result => reqHandler(result, amt, res));
 });
 
-app.all("*", (req, res) => {
+app.all("*", async (req, res) => {
     res.redirect("/");
 });
 
