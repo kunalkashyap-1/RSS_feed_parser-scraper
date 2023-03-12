@@ -27,13 +27,21 @@ const ascii_art = `
                                                                                                                  
 `;
 
+//request handler function 
 function reqHandler(result, amt, res) {
+    try{
+    //if proper results have been found
     if (result !== undefined) {
-        const Data = result.data.slice(0, (amt > 0 ? amt : result.length));
-        res.json({ Data });
+        const {data} = result;
+        const Data = data.slice(0, amt || data.length);
+        res.status(200).json({ Data });
     }
+    //if no such path is available
     else {
         res.status(404).json(ascii_art);
+    }}
+    catch{
+        res.sendStatus(500);
     }
 }
 
@@ -48,32 +56,44 @@ app.get("/", async (req, res) => {
 app.get("/search/:path", async (req, res) => {
     const path = `${process.env.search}${req.params.path}`;
     const amt = req.query.limit;
-    // console.log(path);
-    // console.log(amt);
+    // Call search_feeds function with path and limit, and handle the result with reqHandler
     search_feeds(path)
-        .then(result => reqHandler(result, amt, res));
+        .then(result => reqHandler(result, amt, res))
+        .catch(error => {
+            console.log(error);
+            res.sendStatus(500)});
 });
 
 app.get("/feeds/:path", async (req, res) => {
     const path = req.params.path;
     // console.log(process.env[query]);
     const amt = req.query.limit;
-
+    // Call feeds function with path and limit, and handle the result with reqHandler
     feeds(process.env[path])
-        .then(result => reqHandler(result, amt, res));
+        .then(result => reqHandler(result, amt, res))
+        .catch(error => {
+            console.log(error);
+            res.sendStatus(500)});
 });
 
 app.get("/c1/:path", async (req, res) => {
     const path = req.params.path;
     const amt = req.query.limit;
+    // Call category_feeds function, and handle the result with reqHandler
     category_feeds(process.env[path])
-        .then(result => reqHandler(result, amt, res));
+        .then(result => reqHandler(result, amt, res))
+        .catch(error => {
+            console.log(error);
+            res.sendStatus(500)});
 });
 
 app.all("*", async (req, res) => {
-    res.redirect("/");
+    // Redirect any other route to the root URL
+    res.status(404).redirect("/");
 });
 
+
+//server starter 
 app.listen(process.env.PORT || 8383, () => {
     console.log("server active ");
 })
