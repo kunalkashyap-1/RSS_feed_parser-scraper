@@ -10,6 +10,9 @@ Developers that need to retrieve news articles from websites for their applicati
 
 Overall, the project offers developers a quick and dependable way to get data without having to create their own web scrapers.
 
+#### [Documentation and Live tessing](https://feedparsify.netlify.app/)
+
+![Program Structure](https://raw.githubusercontent.com/kunalkashyap-1/RSS_feed_parser-scraper/master/structure.png)
 
 ## Usage
 
