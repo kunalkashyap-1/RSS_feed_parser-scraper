@@ -6,9 +6,19 @@ const feeds = require("./scraper_controller/feeds.js");
 const search_feeds = require("./scraper_controller/search_feeds.js");
 const category_feeds = require("./scraper_controller/category_feeds.js");
 const express = require("express");
+const rateLimiter = require("express-rate-limit");
 
 const app = express();
 app.use(cors());
+
+const limiter = rateLimiter({
+    windowMs: 60 * 1000, // 1 minute
+    max: 100,//limit each IP for 100 every minute
+    message: "Rate limit exceeded, At the moment we only allow 100 requests per minute"
+});
+
+// Apply the rate limiter middleware to all requests
+app.use(limiter);
 
 const ascii_art = `
 ███████ ██████  ██████   ██████  ██████      ██   ██  ██████  ██   ██                                            
