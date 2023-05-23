@@ -21,25 +21,23 @@ const search = async (req, res) => {
 const feeds = async (req, res) => {
   const path = req.params.path;
   const amt = req.query.limit;
-  // Call feeds function with path and limit, and handle the result with reqHandler
-  getFeeds(toi[path])
-    .then((result) => reqHandler(result, amt, res))
-    .catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-    });
+  
+  if (path !== 'top_stories' && path !== 'latest_feeds' && path !== 'most_read' && path !== 'most_shared') {
+    getCatFeeds(toi[path])
+      .then((result) => reqHandler(result, amt, res))
+      .catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  } else {
+    getFeeds(toi[path])
+      .then((result) => reqHandler(result, amt, res))
+      .catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      });
+  }
 };
 
-const category_feeds = async (req, res) => {
-  const path = req.params.path;
-  const amt = req.query.limit;
-  // Call category_feeds function, and handle the result with reqHandler
-  getCatFeeds(toi[path])
-    .then((result) => reqHandler(result, amt, res))
-    .catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-    });
-};
 
-module.exports = { search, feeds, category_feeds };
+module.exports = { search, feeds};
