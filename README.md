@@ -67,19 +67,12 @@ This endpoint is used to search for data on the website. It takes a topic as par
 ```
 
  - /feeds/[Article-type]
-This endpoint is used to retrieve feeds from the website. It takes a Article type parameter that specifies the website to retrieve feeds from and a query parameter limit that specifies the maximum number of articles to return.
+This endpoint is used to retrieve feeds from the websites. It takes a Article type and source as parameter that specifies the website to retrieve feeds from and a query parameter limit that specifies the maximum number of articles to return.
 
 ```sh
     GET /feeds/article-type?limit=<integer>
 ```
 
-- /c1/:[parameter]
-
-This endpoint is used to retrieve category/Location feeds. It takes a parameter that specifies the website to retrieve feeds from and a query parameter limit that specifies the maximum number of results to return.
-
-```sh
-    GET /c1/parameter?limit=<integer>
-```
 
 ## Scrapers
 The API uses three controllers to retrieve data from websites:
@@ -90,8 +83,6 @@ This controller is used to retrieve feeds from a website. It takes a URL as inpu
 - scraper_controller/search_feeds.js
 This controller is used to search for data on a website. It takes a URL as input and returns an object containing an array of search results.
 
-- scraper_controller/category_feeds.js
-This controller is used to retrieve category feeds from a website. It takes a URL as input and returns an object containing an array of category feed objects.
 
 ## Request Handler
 The API uses a request handler function to handle the responses to the client. The `reqHandler()` function takes three arguments: `result, amt, and res`. result is the result returned from the controller function, amt is the maximum number of results to return, and res is the response object.
