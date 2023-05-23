@@ -46,8 +46,7 @@ app.use("/wired", wiredRoutes);
 app.get("/", async (req, res) => {
   res.send(`<div>
     <pre>${ascii_art}</pre>
-    <h3>Invalid endpoint please enter endpoint with valid path</h3>
-    <p>Add Valid Path /search, /feeds, /c1
+    <h1>For more information, <a href="https://feedparsify.netlify.app/">read Docs</a><h1/> 
      </div>`);
 });
 
