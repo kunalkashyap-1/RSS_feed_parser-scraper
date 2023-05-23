@@ -35,7 +35,6 @@ module.exports = async function (link) {
       data.push(Data);
     });
 
-    // Log the scraped data
     return { data };
   } catch (error) {
     console.error("Error:", error);
